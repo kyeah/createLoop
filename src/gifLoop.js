@@ -15,7 +15,8 @@ function gifLoop(loop, {
     startLoop = 0,
     endLoop = 1,
     fileName = "image.gif",
-    onFinishRender = undefined,	
+    onFinishRender = undefined,
+    onStartRender = undefined,
     canvas = document.getElementsByTagName('canvas')[0],
     options = {},
 } = {}) {
@@ -64,6 +65,10 @@ function gifLoop(loop, {
         console.log(`rendering GIF`);
         renderStartTime = Date.now()
         gifjs.render()
+
+      if (onStartRender) {
+        onStartRender();
+      }
     }
 
     function onFinishedRendering(blob) {
